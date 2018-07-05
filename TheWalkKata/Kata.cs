@@ -11,9 +11,36 @@ namespace TheWalkKata
     {
         public static bool IsValidWalk(string[] walk)
         {
-            var result = false;
+            if (walk.Length != 10)
+                return false;
 
-            return result;
+            int upDown = 0;
+            int leftRight = 0;
+
+            foreach (var currentStep in walk)
+            {
+                switch (currentStep.ToLower())
+                {
+                    case "n": upDown++;
+                        break;
+                    case "s":
+                        upDown--;
+                        break;
+                    case "w":
+                        leftRight--;
+                        break;
+                    case "e":
+                        leftRight++;
+                        break;
+                    default:
+                        return false;
+                }
+            }
+
+            if (upDown == 0 && leftRight == 0)
+                return true;
+
+            return false;
         }
     }
 }
